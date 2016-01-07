@@ -60,7 +60,7 @@ public class Program
                 byte[] bytes = new byte[BufferSize];
                 if (ns1.DataAvailable)
                 {
-                    var len = ns1.Read(bytes, 0, BufferSize);
+                    int len = ns1.Read(bytes, 0, BufferSize);
                     byte[] subbytes = SubBytes(bytes, len, 0);
                     ns2.Write(subbytes, 0, len);
                 }
@@ -106,13 +106,13 @@ public class Program
     }
     public static byte[] SubBytes(byte[] bytes, int len, int temp)
     {
-        var databytes = new byte[len];
+        byte[] databytes = new byte[len];
         Buffer.BlockCopy(bytes, temp, databytes, 0, len);
         return databytes;
     }
     public static byte[] SubBytes(byte[] bytes, int len, ref int temp)
     {
-        var databytes = SubBytes(bytes, len, temp);
+        byte[] databytes = SubBytes(bytes, len, temp);
         temp += len;
         return databytes;
     }
